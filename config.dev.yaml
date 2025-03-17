@@ -1,0 +1,14 @@
+use_dev_logger: true
+timeout: 0
+
+# structure for bot configs, check config/config.go for more details.
+# listener:
+#   guild_id: stub
+#   channel_id: stub
+#   token: stub
+
+listener: FS->.listener_bot_config.yaml
+
+speakers:
+- FS->.speaker1_bot_config.yaml
+- FS->.speaker2_bot_config.yaml

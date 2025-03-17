@@ -1,0 +1,4 @@
+vendor
+.history
+.*bot_config.*
+.idea

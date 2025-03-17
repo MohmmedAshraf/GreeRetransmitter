@@ -1,0 +1,48 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+    - echo "For more information run \"task --summary <task>\""
+    - echo "Arguments should be passed using \"task <task> -- <arguments>\""
+    - echo ""
+    - task --list   # by default if someone runs "task" in project directory it will list all available tasks with descriptions
+    silent: true
+
+  tidy:
+    desc:    This task tidies go.mod
+    summary: |
+      This task tidies go.mod
+      Dependencies:
+      - "go" has to be in PATH
+    cmds:
+    - go mod tidy
+    - go mod vendor
+
+  fmt:
+    desc:    This task runs go fmt on whole project
+    summary: |
+      This task runs go fmt on whole project
+      Dependencies:
+      - "gofumpt" - `go install mvdan.cc/gofumpt@latest`
+    cmds:
+    - gofumpt -l -w $(git ls-files '*.go')
+
+  lint:
+    desc:    This task runs go lint tool on the whole project
+    summary: |
+      This task runs go lint tool on the whole project
+      Dependencies:
+      - "golangci-lint" - (https://golangci-lint.run/usage/install/#local-installation)
+    cmds:
+    - task: fmt
+    - golangci-lint run -v {{.CLI_ARGS}}
+
+  run:
+    desc:    This task runs the bots locally
+    summary: |
+      This task runs the bots locally
+      Dependencies:
+      - "go" has to be in PATH
+    cmds:
+    - go run .
