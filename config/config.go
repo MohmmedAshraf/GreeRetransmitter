@@ -13,10 +13,13 @@ const (
 )
 
 type Config struct {
-	UseDevLogger bool          `mapstructure:"use_dev_logger"`
-	Timeout      time.Duration `mapstructure:"timeout"`
-	Listener     BotConfig     `mapstructure:"listener"`
-	Speakers     []BotConfig   `mapstructure:"speakers"`
+	// If true - will pretty print logs, otherwise will json-print them.
+	UseDevLogger bool `mapstructure:"use_dev_logger"`
+	// Time after which the bot will shutdown itself,
+	// if set to 0 - bot will run indefinitely.
+	Timeout  time.Duration `mapstructure:"timeout"`
+	Listener BotConfig     `mapstructure:"listener"`
+	Speakers []BotConfig   `mapstructure:"speakers"`
 }
 
 type BotConfig struct {
