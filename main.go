@@ -6,8 +6,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/joomcode/errorx"
 	"github.com/rs/zerolog"
+	"github.com/sovamorco/errorx"
 	"github.com/sovamorco/gommon/log"
 	"github.com/sovamorco/gree-retransmitter/config"
 	"github.com/sovamorco/gree-retransmitter/service"
@@ -24,21 +24,12 @@ func run(ctx context.Context, cfg *config.Config) error {
 	ctx, cancel := signal.NotifyContext(ctx, syscall.SIGINT, syscall.SIGTERM)
 	defer cancel()
 
-	if cfg.Timeout != 0 {
-		var cancelTimeout func()
-
-		ctx, cancelTimeout = context.WithTimeout(ctx, cfg.Timeout)
-		defer cancelTimeout()
-	}
-
 	errChan := make(chan error, errBuffer)
 
-	srv, err := service.New(logger, cfg, errChan)
+	srv, err := service.New(ctx, cfg, errChan)
 	if err != nil {
 		return errorx.Decorate(err, "initialize service")
 	}
-
-	go srv.Run(logger)
 
 	defer srv.Shutdown(logger)
 

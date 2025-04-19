@@ -6,6 +6,11 @@ This is just a bot that listens to voice data in one channel and broadcasts it t
 
 The need for this bot came from playing an MMORPG without paying for a TeamSpeak license, and Discord refusing to add a whisper feature. Hence the name (Gree was the shotcaller of the guild this was made for).
 
+## Features
+* Start and stop commands
+* Limit roles that can start or stop the bots
+* Configurations for multiple guilds (only one can run at a time)
+
 ## Running the bot
 
 ### Simple

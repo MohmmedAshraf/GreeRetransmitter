@@ -1,10 +1,7 @@
 use_dev_logger: true
-timeout: 0
 
 # structure for bot configs, check config/config.go for more details.
 # listener:
-#   guild_id: stub
-#   channel_id: stub
 #   token: stub
 
 listener: FS->.listener_bot_config.yaml
@@ -12,3 +9,17 @@ listener: FS->.listener_bot_config.yaml
 speakers:
 - FS->.speaker1_bot_config.yaml
 - FS->.speaker2_bot_config.yaml
+
+guilds:
+  '350584255975522306':
+    listener_channel: '350584256453541902'
+    speaker_channels:
+    - '601485928715780139'
+    - '1322597311226052628'
+    starter_roles:
+    - '1362833016136929310'
+  '1141267654246678639':
+    listener_channel: '1141267654880014470'
+    speaker_channels: []
+    starter_roles:
+    - '1363100218115096766'

@@ -1,29 +1,44 @@
+version: "2"
 linters:
-  enable-all: true
+  default: all
   disable:
-  - tagliatelle
-  - varnamelen
-  - depguard
-  - godox
-  - tenv
-  - protogetter # I do not agree with it
-  - goimports # conflicts with gofumpt
-  - gci       # conflicts with gofumpt
-  - gofumpt   # broken, just run task fmt
-  - gomoddirectives # use replacements for testing own forks
-
-linters-settings:
-  ireturn:
-    allow:
-    - error
-    - stdlib
-    - generic
-
-  wrapcheck:
-    ignoreSigs:
-    - errors.New(
-    - errorx.Decorate(
-    - status.Error(
-    - status.Errorf(
-    - fmt.Errorf(
-    - (*google.golang.org/grpc/internal/status.Status).Err(
+    - depguard
+    - godox
+    - gomoddirectives
+    - protogetter
+    - tagliatelle
+    - varnamelen
+  settings:
+    ireturn:
+      allow:
+        - error
+        - stdlib
+        - generic
+    wrapcheck:
+      ignore-sigs:
+        - errors.New(
+        - errorx.Decorate(
+        - status.Error(
+        - status.Errorf(
+        - fmt.Errorf(
+        - (*google.golang.org/grpc/internal/status.Status).Err(
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

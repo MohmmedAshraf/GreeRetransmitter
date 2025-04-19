@@ -5,7 +5,6 @@ go 1.23.4
 require (
 	github.com/bwmarrin/discordgo v0.28.1
 	github.com/hashicorp/go-multierror v1.1.1
-	github.com/joomcode/errorx v1.2.0
 	github.com/rs/zerolog v1.33.0
 	github.com/sovamorco/errorx v0.1.0
 	github.com/sovamorco/gommon v0.3.1
