@@ -42,6 +42,10 @@ type Bot struct {
 }
 
 func (b *Bot) Close() error {
+	if b == nil {
+		return nil
+	}
+
 	if b.VC != nil {
 		err := b.VC.Disconnect()
 		if err != nil {
